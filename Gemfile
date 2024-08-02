@@ -42,7 +42,8 @@ gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.12.1"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "bundler-audit", "~> 0.9.1"
+  gem "brakeman", require: false
   gem "debug", platforms: %i[mri windows]
 end
 
