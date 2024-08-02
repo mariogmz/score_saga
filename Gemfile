@@ -40,10 +40,12 @@ gem "rack-cors"
 # Auth
 gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.12.1"
+gem "jsonapi-serializer", "~> 2.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
+  gem "dotenv-rails", "~> 3.1"
 end
 
 group :development do
@@ -57,4 +59,5 @@ end
 group :test do
   gem "rspec-rails", "~> 6.1.0"
   gem "simplecov", require: false
+  gem "shoulda-matchers", "~> 6.2"
 end

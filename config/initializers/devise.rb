@@ -264,6 +264,7 @@ Devise.setup do |config|
   #
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -280,7 +281,7 @@ Devise.setup do |config|
   config.warden do |manager|
     # manager.intercept_401 = false
     # manager.default_strategies(scope: :user).unshift :some_external_strategy
-    manager.scope_defaults(:user, store: false)
+    # manager.scope_defaults(:user, store: false)
   end
 
   # ==> Mountable engine configurations
@@ -311,4 +312,15 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.devise_jwt_secret_key!
+    jwt.dispatch_requests = [
+      ["POST", %r(^sessions$)]
+    ]
+    jwt.revocation_requests = [
+      ["DELETE", %r(^sessions$)]
+    ]
+    jwt.expiration_time = ENV.fetch("DEVISE_JWT_EXPIRATION_TIME", 1.day).to_i
+  end
 end
