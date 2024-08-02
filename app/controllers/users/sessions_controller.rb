@@ -28,6 +28,6 @@ class Users::SessionsController < Devise::SessionsController
     def jwt_payload
       JWT.decode(request.headers["Authorization"].split.last, Rails.application.credentials.devise_jwt_secret_key!).first
     rescue JWT::DecodeError
-      nil
+      { "jti" => nil }
     end
 end
