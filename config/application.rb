@@ -49,5 +49,11 @@ module ScoreSaga
         system("bundle exec rubocop -A --fail-level=E #{parsable_files.shelljoin}", exception: true)
       end
     end
+
+    # Enable the session store for api only applications.
+    # Note: The session store is disabled by default for API only applications.
+    config.session_store(:cookie_store, key: "_interslice_session")
+    config.middleware.use(ActionDispatch::Cookies)
+    config.middleware.use(config.session_store, config.session_options)
   end
 end

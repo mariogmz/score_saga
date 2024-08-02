@@ -5,14 +5,16 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  namespace :api do
-    devise_for :users, path: "", controllers: {
+  scope :api do
+    devise_for :users, path: "", path_names: {
+    sign_in: "sessions",
+    sign_out: "sessions",
+    registration: "user"
+    },
+    controllers: {
       sessions: "users/sessions",
       registrations: "users/registrations"
-    }, path_names: {
-      sign_in: "session",
-      registration: "user",
-      sign_out: "logout"
-    }
+    },
+    defaults: { format: :json }
   end
 end
