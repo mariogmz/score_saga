@@ -16,7 +16,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
 
     context "when both email and password are valid" do
       let(:params) do
-        { user: { email: "mario@dev.com", password: "test123!" } }
+        { user: { email: "john@doe.com", password: "test123!" } }
       end
 
       it "returns a successful response" do
@@ -26,7 +26,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       it "returns the user data" do
         response_body = JSON.parse(response.body)
         expect(response_body["data"]["attributes"]).to include(
-          "email" => "mario@dev.com",
+          "email" => "john@doe.com",
           "created_at" => anything,
         )
       end
