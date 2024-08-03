@@ -42,6 +42,9 @@ gem "devise", "~> 4.9"
 gem "devise-jwt", "~> 0.12.1"
 gem "jsonapi-serializer", "~> 2.2"
 
+# solid cache
+gem "solid_cache", "~> 0.7.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
