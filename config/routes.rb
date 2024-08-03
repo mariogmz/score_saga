@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    resource :user, only: %i[show]
+
     scope :user do
       resources :game_events, only: %i[index create]
     end
