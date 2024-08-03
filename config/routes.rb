@@ -3,8 +3,6 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root to: "home#index"
-
   scope :api do
     devise_for :users, path: "", path_names: {
     sign_in: "sessions",
@@ -19,6 +17,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    resource :user, only: %i[show]
+
     scope :user do
       resources :game_events, only: %i[index create]
     end

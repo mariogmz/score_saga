@@ -6,4 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_many :game_events, dependent: :destroy
+
+  def total_games_played
+    game_events.size
+  end
 end

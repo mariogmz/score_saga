@@ -27,7 +27,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
         response_body = JSON.parse(response.body)
         expect(response_body["data"]["attributes"]).to include(
           "email" => "john@doe.com",
-          "created_at" => anything,
+          "member_since" => anything,
         )
       end
     end
