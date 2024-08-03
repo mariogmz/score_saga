@@ -21,27 +21,26 @@ RSpec.describe UserSerializer, type: :serializer do
     end
   end
 
-  describe "conditional attribute" do
-    context "when include_total_games is true" do
-      let(:serializer) { UserSerializer.new(user, params: { include_total_games: true }) }
+  context "when include_stats is true" do
+    let(:serializer) { UserSerializer.new(user, params: { include_stats: true }) }
 
-      it "includes the total_games_played attribute" do
-        expect(serializer.serializable_hash[:data][:attributes]).to have_key(:total_games_played)
-      end
+    it "includes the stats with total_games_played" do
+      expect(serializer.serializable_hash[:data][:attributes]).to have_key(:stats)
+      expect(serializer.serializable_hash[:data][:attributes][:stats]).to have_key(:total_games_played)
     end
+  end
 
-    context "when include_total_games is false" do
-      let(:serializer) { UserSerializer.new(user, params: { include_total_games: false }) }
+  context "when include_stats is false" do
+    let(:serializer) { UserSerializer.new(user, params: { include_stats: false }) }
 
-      it "does not include the total_games_played attribute" do
-        expect(serializer.serializable_hash[:data][:attributes]).not_to have_key(:total_games_played)
-      end
+    it "does not include the stats attribute" do
+      expect(serializer.serializable_hash[:data][:attributes]).not_to have_key(:stats)
     end
+  end
 
-    context "when include_total_games is not provided" do
-      it "does not include the total_games_played attribute" do
-        expect(serializer.serializable_hash[:data][:attributes]).not_to have_key(:total_games_played)
-      end
+  context "when include_stats is not provided" do
+    it "does not include the stats attribute" do
+      expect(serializer.serializable_hash[:data][:attributes]).not_to have_key(:stats)
     end
   end
 end

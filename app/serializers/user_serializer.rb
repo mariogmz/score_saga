@@ -5,5 +5,9 @@ class UserSerializer
 
   attributes :id, :email
   attribute :member_since, &:created_at
-  attribute :total_games_played, if: Proc.new { |_record, params| params && params[:include_total_games] == true }
+  attribute :stats, if: Proc.new { |record, params| params[:include_stats] == true } do |object|
+    {
+      total_games_played: object.total_games_played
+    }
+  end
 end
