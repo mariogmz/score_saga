@@ -1,0 +1,4 @@
+mario:
+  email: mario@dev.com
+  encrypted_password: <%= User.new.send(:password_digest, 'test123!') %>
+  jti: <%= SecureRandom.hex %>

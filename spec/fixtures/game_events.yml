@@ -1,0 +1,7 @@
+<% 5.times do |i| %>
+  game_event_<%= i %>:
+    event_type: "COMPLETED"
+    occurred_at: <%= i.minutes.ago %>
+    game_id: <%= i %>
+    user: mario
+<% end %>
