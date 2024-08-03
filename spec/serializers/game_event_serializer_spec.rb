@@ -10,7 +10,7 @@ RSpec.describe GameEventSerializer, type: :serializer do
   let(:serialization) { serializer.serializable_hash }
 
   it "includes the correct attributes" do
-    expect(serialization[:data][:attributes].keys).to contain_exactly(:id, :event_type, :occurred_at, :game_id, :user)
+    expect(serialization[:data][:attributes].keys).to contain_exactly(:id, :event_type, :occurred_at, :game_id)
   end
 
   it "includes the correct values" do
@@ -18,6 +18,5 @@ RSpec.describe GameEventSerializer, type: :serializer do
     expect(serialization[:data][:attributes][:event_type]).to eq(game_event.event_type)
     expect(serialization[:data][:attributes][:occurred_at]).to eq(game_event.occurred_at)
     expect(serialization[:data][:attributes][:game_id]).to eq(game_event.game_id)
-    expect(serialization[:data][:attributes][:user]).to eq(game_event.user)
   end
 end

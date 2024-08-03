@@ -2,5 +2,5 @@
 
 class GameEventSerializer
   include JSONAPI::Serializer
-  attributes :id, :event_type, :occurred_at, :game_id, :user
+  attributes :id, :event_type, :occurred_at, :game_id
 end
