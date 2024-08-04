@@ -79,5 +79,6 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
-
+  database: score_saga_production
+  username: score_saga
+  password: <%= ENV["SCORE_SAGA_DATABASE_PASSWORD"] %>
