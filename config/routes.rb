@@ -3,8 +3,6 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root to: "home#index"
-
   scope :api do
     devise_for :users, path: "", path_names: {
     sign_in: "sessions",
